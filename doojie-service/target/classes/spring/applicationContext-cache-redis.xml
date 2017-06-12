@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	
+
+	<!-- 在spring的xml配置文件中当有多个*.properties文件需要加载时，如果不加ignore-unresolvable="true" 则会被忽略，原因是Spring容器是反射扫描的发现机制，当发现后剩余的则不会扫描，所以spring容器仅允许最多定义一个<context:property-placeholder> -->
+    <context:property-placeholder location="classpath:redisConfig.properties" ignore-unresolvable="true"/>
+	
+	<!-- 配置redis池，依次为最大实例数，最大空闲实例数，(创建实例时)最大等待时间，(创建实例时)是否验证 -->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="50" />   <!-- 最大连接数 -->
+	    <property name="maxIdle" value="10" />     <!--  最大空闲数-->
+	    <property name="maxWaitMillis" value="1000" />    <!-- 最大等待时间ms -->
+	    <property name="testOnBorrow" value="true" />
+	</bean>
+
+    <!-- redis连接配置，依次为主机ip，端口，是否使用池，(usePool=true时)redis的池配置 -->
+   <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" destroy-method="destroy">  
+        <property name="hostName" value="${redis_hostname}"></property>
+        <property name="port" value="${redis_port}"></property>
+        <property name="password" value="${redis_password}"></property>
+        <property name="timeout" value="15000"></property>
+        <property name="usePool" value="true"></property>
+        <property name="poolConfig" ref="jedisPoolConfig"/>
+    </bean> 
+
+  <!-- redis模板配置 -->
+    <bean id="template" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="jedisConnectionFactory"/>
+		<property name="keySerializer">
+             <bean
+                 class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+         </property>
+         <property name="valueSerializer">
+             <bean
+                 class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+         </property>
+    </bean>
+	
+<!--     <bean id="redisCacheServiceUtil" class="com.doojie.service.service.util.RedisCacheServiceUtil"></bean> -->
+</beans>

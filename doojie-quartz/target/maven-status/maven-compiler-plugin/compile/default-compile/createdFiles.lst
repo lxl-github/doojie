@@ -1,0 +1,7 @@
+com\doojie\quartz\task\OrderStatusUpdateTask.class
+com\doojie\quartz\utils\SpringUtils.class
+com\doojie\quartz\job\OrderStatusUpdateJob.class
+com\doojie\quartz\scheduler\support\ScheduleJobServiceImpl.class
+com\doojie\quartz\job\AutoSchedulingWorkJob.class
+com\doojie\quartz\scheduler\ScheduleJobService.class
+com\doojie\quartz\utils\TaskUtils.class

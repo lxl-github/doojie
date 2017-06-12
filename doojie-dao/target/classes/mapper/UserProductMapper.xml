@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.doojie.dao.UserProductMapper" >
+  <resultMap id="BaseResultMap" type="com.doojie.domain.po.UserProduct" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="consume_code" property="consumeCode" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="consume_number" property="consumeNumber" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="expired_time" property="expiredTime" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="consume_number_already" property="consumeNumberAlready" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="BaseResultUserProductVoMap" type="com.doojie.domain.vo.UserProductVo" >
+  	<id column="id" property="id" jdbcType="INTEGER" />
+    <result column="consume_code" property="consumeCode" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="name" property="productName" jdbcType="INTEGER" />
+    <result column="consume_number" property="consumeNumber" jdbcType="INTEGER" />
+    <result column="product_type" property="productType" jdbcType="INTEGER" />
+    <result column="is_door" property="productIsDoor" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="expired_time" property="expiredTime" jdbcType="INTEGER" />
+    <result column="consume_number_already" property="consumeNumberAlready" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <association column="{userId=user_id,userProductId=id}"  property="tradeRecord"
+   javaType="com.doojie.domain.po.TradeRecord"  select="com.doojie.dao.TradeRecordMapper.selectByUserIdAndUserProductId" />
+  </resultMap>
+  
+  <resultMap id="BaseResultUserCardVoMap" type="com.doojie.domain.vo.UserCardVo" >
+  	<id column="id" property="id" jdbcType="INTEGER" />
+<!--     <result column="consume_code" property="consumeCode" jdbcType="VARCHAR" /> -->
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="name" property="productName" jdbcType="INTEGER" />
+    <result column="consume_number" property="consumeNumber" jdbcType="INTEGER" />
+    <result column="product_type" property="productType" jdbcType="INTEGER" />
+    <result column="is_door" property="productIsDoor" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="expired_time" property="expiredTime" jdbcType="INTEGER" />
+    <result column="consume_number_already" property="consumeNumberAlready" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, consume_code, user_id, product_id, consume_number, create_time, expired_time, 
+    remark,consume_number_already,status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from doojie_user_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from doojie_user_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.doojie.domain.po.UserProduct" useGeneratedKeys="true" keyProperty="id">
+    insert into doojie_user_product (id, consume_code, user_id, 
+      product_id, consume_number, create_time, 
+      expired_time, remark,consume_number_already,status)
+    values (#{id,jdbcType=INTEGER}, #{consumeCode,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{productId,jdbcType=INTEGER}, #{consumeNumber,jdbcType=INTEGER}, #{createTime,jdbcType=INTEGER}, 
+      #{expiredTime,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR},#{consumeNumberAlready,jdbcType=INTEGER},#{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doojie.domain.po.UserProduct" useGeneratedKeys="true" keyProperty="id">
+    insert into doojie_user_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="consumeCode != null" >
+        consume_code,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="consumeNumber != null" >
+        consume_number,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="expiredTime != null" >
+        expired_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="consumeNumberAlready != null">
+      consume_number_already,
+      </if>
+      <if test="status != null">
+      status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="consumeCode != null" >
+        #{consumeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="consumeNumber != null" >
+        #{consumeNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="expiredTime != null" >
+        #{expiredTime,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeNumberAlready != null">
+        #{consumeNumberAlready,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doojie.domain.po.UserProduct" >
+    update doojie_user_product
+    <set >
+      <if test="consumeCode != null" >
+        consume_code = #{consumeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="consumeNumber != null" >
+        consume_number = #{consumeNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="expiredTime != null" >
+        expired_time = #{expiredTime,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeNumberAlready != null">
+        consume_number_already = #{consumeNumberAlready,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doojie.domain.po.UserProduct" >
+    update doojie_user_product
+    set consume_code = #{consumeCode,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      consume_number = #{consumeNumber,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=INTEGER},
+      expired_time = #{expiredTime,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      consume_number_already = #{consumeNumberAlready,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getUserProductVoPageList" resultMap="BaseResultUserProductVoMap">
+   SELECT up.id id,up.`user_id` user_id,up.`consume_code` consume_code,up.`create_time` create_time,up.`expired_time` expired_time,up.`consume_number` consume_number,up.`consume_number_already` consume_number_already,up.`status` status,p.`name` `name`,p.`product_type` product_type,p.is_door is_door FROM doojie_user_product up ,doojie_product p WHERE  up.`user_id` = #{userId,jdbcType=INTEGER} AND up.`product_id` = p.`id` 
+  </select>
+  
+  <select id="getUserCardVoList" resultMap="BaseResultUserCardVoMap"><!-- up.`consume_code` consume_code, -->
+   SELECT up.id id,up.`user_id` user_id,up.`create_time` create_time,up.`expired_time` expired_time,up.`consume_number` consume_number,up.`consume_number_already` consume_number_already,up.`status` status,p.`name` `name`,p.`product_type` product_type,p.is_door is_door FROM doojie_user_product up ,doojie_product p WHERE  up.`user_id` = #{userId,jdbcType=INTEGER} AND up.`product_id` = p.`id`
+   <if test="category != null">
+   AND p.product_category = #{category,jdbcType=INTEGER}
+   and up.`expired_time` > UNIX_TIMESTAMP() 
+   and up.consume_number > 0 
+   </if>
+   <if test="isDoor != null">
+   AND p.is_door = #{isDoor,jdbcType=INTEGER}
+   </if>
+      order by up.`expired_time` ASC ,up.`consume_number` ASC
+  </select>
+  
+  <select id="getUserCardVo" resultMap="BaseResultUserCardVoMap"><!-- up.`consume_code` consume_code, -->
+   SELECT up.id id,up.`user_id` user_id,up.`create_time` create_time,up.`expired_time` expired_time,up.`consume_number` consume_number,up.`consume_number_already` consume_number_already,up.`status` status,p.`name` `name`,p.`product_type` product_type,p.is_door is_door,p.number number FROM doojie_user_product up ,doojie_product p WHERE  up.`user_id` = #{userId,jdbcType=INTEGER} AND up.`id` = #{userProductId,jdbcType=INTEGER} AND up.`product_id` = p.`id` 
+  </select>
+  
+  <!-- 修改卡状态 -->
+  <update id="updateStatusById">
+  	update doojie_user_product set status = #{status,jdbcType=INTEGER}
+    where id = #{userProductId,jdbcType=INTEGER} 
+  </update>
+  
+  <update id="updateConsumNumberAlreadyById">
+  	update doojie_user_product set consume_number = consume_number - 1,consume_number_already = consume_number_already + 1
+    where id = #{userProductId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectUserProdcutNextId" resultType="java.lang.Integer">
+  	SELECT AUTO_INCREMENT FROM information_schema.`TABLES` WHERE TABLE_SCHEMA='doojie_db' AND TABLE_NAME='doojie_user_product' FOR UPDATE
+  </select>
+</mapper>

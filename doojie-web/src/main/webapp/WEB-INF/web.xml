@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>doojie-web</display-name>
+	
+	
+	
+	<!-- 字符集过滤器 -->
+	<filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<!-- shiro权限过滤 -->
+	<filter>
+		<filter-name>shiroFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param>
+			<param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>characterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>shiroFilter</filter-name>
+		<url-pattern>/system/*</url-pattern>
+	</filter-mapping>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:spring/applicationContext.xml</param-value>
+	</context-param>
+	<!-- spring 监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- 防止spring内存溢出监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+	
+	<!-- 初始化加载网站设置项目 -->
+	<listener>
+		<listener-class>com.doojie.common.listener.InitListener</listener-class>
+	</listener>
+	
+	<!-- spring mvc拦截器 -->
+	<servlet>
+		<servlet-name>springServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:selvert/spring-mvc.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>spring.profiles.active</param-name>
+			<param-value>production</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+    <!-- 启用Web监控统计功能需要在Web应用的web.xml中加入这个Servlet声明 -->
+    <servlet>
+        <servlet-name>druidStatView</servlet-name>
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+        <init-param>
+            <!-- 允许清空统计数据 -->
+            <param-name>resetEnable</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <!-- 用户名 -->
+            <param-name>loginUsername</param-name>
+            <param-value>admin</param-value>
+        </init-param>
+        <init-param>
+            <!-- 密码 -->
+            <param-name>loginPassword</param-name>
+            <param-value>123456</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>druidStatView</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
+    </servlet-mapping>
+    
+    <!-- 验证码Servlet开始 -->
+	<servlet>
+		<servlet-name>VerifyCodeServlet</servlet-name>
+		<servlet-class>com.doojie.web.controller.VerifyCodeServlet</servlet-class>
+		<init-param>
+			<param-name>imgWidth</param-name>
+			<param-value>60</param-value>
+		</init-param>
+		<init-param>
+			<param-name>imgHeight</param-name>
+			<param-value>20</param-value>
+		</init-param>
+		<init-param>
+			<param-name>codeCount</param-name>
+			<param-value>4</param-value>
+		</init-param>
+		<load-on-startup>100</load-on-startup>
+	</servlet>
+    
+	<servlet-mapping>
+		<servlet-name>VerifyCodeServlet</servlet-name>
+		<url-pattern>/verifyCodeServlet</url-pattern>
+	</servlet-mapping>
+	
+    <!-- jersey rest -->
+    <servlet>
+        <servlet-name>jerseyServlet</servlet-name>
+        <servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>com.doojie.web.rest.api</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>jerseyServlet</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Log4J 配置 -->
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:log4j.properties</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jRefreshInterval</param-name>
+		<param-value>3000</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	
+	<!-- 前端用户拦截 -->
+	<filter>
+		<filter-name>LoginUserCheckFilter</filter-name>
+		<filter-class>com.doojie.common.filter.LoginUserCheckFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoginUserCheckFilter</filter-name>
+		<url-pattern>/webApp/user/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 前端商家拦截 -->
+	<filter>
+		<filter-name>LoginMerchantCheckFilter</filter-name>
+		<filter-class>com.doojie.common.filter.LoginMerchantCheckFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoginMerchantCheckFilter</filter-name>
+		<url-pattern>/webApp/merchant/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 前端用户拦截 -->
+	<filter>
+		<filter-name>LoginEmployeeCheckFilter</filter-name>
+		<filter-class>com.doojie.common.filter.LoginEmployeeCheckFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoginEmployeeCheckFilter</filter-name>
+		<url-pattern>/webApp/employee/*</url-pattern>
+	</filter-mapping>
+    
+    <!-- 防止xxs攻击 -->
+    <filter>
+		<filter-name>XSSFilter</filter-name>
+		<filter-class>com.doojie.common.filter.XSSFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>XSSFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+    
+    <error-page>
+		<exception-type>org.springframework.web.util.NestedServletException</exception-type>
+		<location>/WEB-INF/views/error/500.jsp</location>
+	</error-page>
+	<!-- 出错页面定义-->
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/WEB-INF/views/error/500.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/views/error/500.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/views/error/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>401</error-code>
+		<location>/WEB-INF/views/error/401.jsp</location>
+	</error-page>
+    
+	<!-- 初始化欢迎页 -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- 配置sesion超时时间，单位分钟 -->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	
+	
+</web-app>

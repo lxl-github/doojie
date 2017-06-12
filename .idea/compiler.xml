@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Javac" />
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+      <entry name="!?*.aj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="doojie-api" />
+        <module name="doojie-common" />
+        <module name="doojie-dao" />
+        <module name="doojie-domain" />
+        <module name="doojie-quartz" />
+        <module name="doojie-service" />
+        <module name="doojie-shiro" />
+        <module name="doojie-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="doojie" target="1.7" />
+      <module name="doojie-api" target="1.7" />
+      <module name="doojie-common" target="1.7" />
+      <module name="doojie-dao" target="1.7" />
+      <module name="doojie-domain" target="1.7" />
+      <module name="doojie-quartz" target="1.7" />
+      <module name="doojie-service" target="1.7" />
+      <module name="doojie-shiro" target="1.7" />
+      <module name="doojie-web" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

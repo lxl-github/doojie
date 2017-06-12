@@ -1,0 +1,70 @@
+@charset "utf-8";
+/* CSS Document */
+body{margin:0;padding:0; font-size:12px;line-height:20px;}
+.fl{float:left;}
+.flt{float:left;padding-left:15px;padding-top:20px;font-size:20;font-weight:bold;color:#005ab7;width:300px;}
+.fr{float:right;}
+.fc{float:center;}
+.clr{clear:both;height:0;zoom:1;overflow:hidden;}
+.mR20{margin-right:20px;}
+.mT20{margin-top:10px;}
+.mT10{margin-top:5px;}
+.mB10{margin-bottom:10px;}
+.f123{ font-family:Verdana, Geneva, sans-serif;}
+.f16{font-size:16px;}
+input{ vertical-align:middle;}
+.f_hui{color:#888;}
+.f_f60{color:#f60;}
+.f_f00{color:#f00;}
+
+.header{width:100%; min-width:1024px;height:75px;border-bottom:7px solid #069;margin:0;padding:0;background:url(../images/topbg.gif) no-repeat right;}
+.topTime{float:center; height:65px;padding:15px 15px 0 0;color:#124375;}
+.toplogin{float:right; height:65px;padding:10px 10px 0 0;color:#124375; text-align: right;}
+.toplogin a:link,.toplogin a:visited,.toplogin a:hover{font-weight:bold;margin:0 0 0 5px;color:#005ab7; text-decoration:none;}
+.topmain{ background:url(../images/topmainbg.gif) repeat-x;height:25px;padding:10px 10px 0 10px;color:#069;}
+.topmain a:link,.topmain a:visited,.topmain a:hover{ color:#069; text-decoration:none;}
+.topmain .time{color:#666;}
+.mainrightbox{margin-left:200px;width:100%;}
+
+.boxborder{border:1px solid #ddd;}
+.rightbox{padding:7px 7px 25px 7px;margin-left:7px;}
+.rightbox h2{font-size:14px;border-bottom:2px solid #6f5439;padding:3px 0 10px 3px;margin:0;}
+.rightbox .huibox{background:#f8f8f8;padding:5px 5px;margin:8px 0 0 0;}
+.rightbox .mainbox{border-bottom:1px dashed #d1d1d1;padding:20px 15px;margin:8px 0 0 0;}
+.input_01{border:1px solid #ddd;height:20px;line-height:20px;}
+.input_02{border:1px solid #ddd; }
+
+
+.button_a{ background:url(../images/button_a.gif) no-repeat;width:67px;height:24px; text-align:center;padding:2px 0 0 0; font-weight:bold;color:#525252; font-size:12px;margin-right:10px; cursor:pointer; overflow:hidden;}
+.button_a a:link,.button_a a:visited,.button_a a:hover{color:#333; text-decoration:none;}
+.button_a:hover{background:url(../images/button_b.gif) no-repeat;}
+.button_aa{ background:url(../images/button_ba.gif) no-repeat;width:84px;height:24px; text-align:center;padding:2px 0 0 0; font-weight:bold;color:#525252; font-size:12px;margin-right:10px; cursor:pointer; overflow:hidden;}
+.button_aa a:link,.button_a a:visited,.button_a a:hover{color:#333; text-decoration:none;}
+.button_aa:hover{background:url(../images/button_aa.gif) no-repeat;}
+.button_bb{ background:url(../images/button_c.gif) no-repeat;width:100px;height:24px; text-align:center;padding:2px 0 0 0; font-weight:bold;color:#525252; font-size:12px;margin-right:10px; cursor:pointer; overflow:hidden;}
+.button_bb a:link,.button_a a:visited,.button_a a:hover{color:#333; text-decoration:none;}
+.button_bb:hover{background:url(../images/button_ca.gif) no-repeat;}
+.tab_hui{border:1px solid #c7c7c7; border-width:1px 0 0 1px;margin:10px 0 0 0;}
+.tab_hui td,.tab_hui th{ text-align:left;padding:3px 5px;border:1px solid #c7c7c7; border-width:0 1px 1px 0;}
+.tab_hui th{ background:#ececec;}
+.tab_hui a:link,.tab_hui a:visited{color:#069; text-decoration:underline;}
+.tab_hui a:hover{color:#f60;}
+.tab_02 td{padding:5px 0;}
+
+.page a:link,.page a:visited{border:1px solid #d0d0d0;padding:2px 4px 1px 4px; text-decoration:none;margin-left:3px;color:#444;}
+.page a:hover{background:#eee;}
+
+.button{margin:20px 0 0 0; text-align:center;}
+.button input{margin:0 10px;}
+
+.fdbox1{margin:1px auto 0 auto;width:850px;border:1px solid #444;background:#fff;}
+.fdbox{margin:30px auto 0 auto;width:850px;border:1px solid #444;background:#fff;}
+.ckleft{float:left;width:180px; background:#f6f6f6;padding:5px;}
+.ckright{width:100%-200px;margin-left:200px;}
+.ckleft dt{ background:#ddd;padding:2px 5px;font-size:12px; font-weight:bold;}
+.ckleft dl{margin:0;padding:0;}
+.ckleft dd{padding:2px 0 2px 29px;margin:0;display:block;border-bottom:1px solid #dfdfdf;}
+.ckleft ul{padding:0;margin:0; background:#fefefe;}
+.ckleft li{padding:2px 0 2px 53px; list-style:none;margin:0; display:block;border-bottom:1px dashed #eee;}
+.ckleft a:link,.ckleft a:visited,.ckleft a:hover{color:#444; text-decoration:none;}
+

@@ -1,0 +1,141 @@
+@CHARSET "UTF-8";
+
+html {
+	font-size: 62.5%;
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	background-color: #eee;
+}
+
+a:hover {
+	text-decoration: none;
+}
+  /*header*/
+.navbar-style {
+	background: #2885EC;
+/*#009E00;*/
+	color: #fff;
+	width: 100%;
+	margin-bottom: 0px;
+	z-index: 3000;
+}
+
+.navbar-style .ik-ind-container {
+	width: 100%;
+	margin: 0 auto;
+	height: 4em;
+	line-height: 4em;
+	text-align: center;
+	color: #fff;
+}
+
+.navbar-style .ik-ind-container .ind-navbar-chosecity {
+	display: inline-block;
+	float: left;
+	padding: 0 5%;
+	width: 8%;
+	height: inherit;
+}
+
+.navbar-style .ik-ind-container .ind-title {
+	font-size: 1.5em;
+	font-weight: 600;
+}
+
+@media screen and (min-width: 768px) {
+	.navbar-style .ik-ind-container .ind-title {
+		font-size: 2em;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	.navbar-style .ik-ind-container .ind-title {
+		font-size: 1.3em;
+	}
+}
+
+.navbar-style .ik-ind-container .ind-person {
+	height: 50px;
+	line-height: 50px;
+	display: inline-block;
+	float: right;
+	padding: 0px 5% 0px 0px;
+}
+
+.navbar-style .ik-ind-container .caret-white {
+	border-top: 4px solid #fff;
+}
+
+.navbar-style .ik-ind-container .icon-back {
+	display: block;
+	width: 10%;
+	color: #fff;
+	overflow: hidden;
+	float: left;
+}
+      
+
+
+/*footer*/
+.ind_listHeight {
+	height: 50px;
+	line-height: inherit;
+	margin-bottom: 0;
+	color: #999;
+}
+
+.list-inline li {
+/* 	font-size:3em; */
+	width: 25%;
+	text-align: center;
+	height: 3em;
+	margin-top: 5px;
+	cursor: pointer;
+	line-height: 3em;
+	float: left;
+}
+
+
+
+
+.list {
+	font-size: 16px;
+	margin: 5px 5px 5px 5px;
+}
+
+.gongli {
+	color: #E4842C;
+}
+
+.label1{
+		font-size: 1.4em;
+		margin-right:80%;
+	}
+
+@media screen and (min-width: 320px) {
+	.label1{
+		font-size: 0.975em;
+		margin-right:5%;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.label1{
+		font-size: 1.125em;
+		margin-right:55%;
+	}
+}
+
+
+.radioClass {
+	opacity: 0.8;
+	cursor: pointer;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0.8)";
+	filter: alpha(opacity=0.8);
+	font-size:15px;
+}

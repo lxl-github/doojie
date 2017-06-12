@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.doojie.dao.RecommendMapper" >
+  <resultMap id="BaseResultMap" type="com.doojie.domain.po.Recommend" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="bussiness_id" property="bussinessId" jdbcType="INTEGER" />
+    <result column="reasons" property="reasons" jdbcType="VARCHAR" />
+    <result column="recommend_index" property="recommendIndex" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="is_top" property="isTop" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, bussiness_id, reasons, recommend_index,status,is_top,modify_time, create_time, remark,order_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from doojie_recommend
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from doojie_recommend
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.doojie.domain.po.Recommend" >
+    insert into doojie_recommend (id, user_id, bussiness_id, reasons, recommend_index,status,is_top,modify_time, create_time, remark,order_id)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{bussinessId,jdbcType=INTEGER}, 
+      #{reasons,jdbcType=VARCHAR},#{recommendIndex,jdbcType=INTEGER},#{status,jdbcType=INTEGER},
+      #{isTop,jdbcType=INTEGER},#{modifyTime,jdbcType=INTEGER}, #{createTime,jdbcType=INTEGER},
+      #{remark,jdbcType=VARCHAR},#{orderId,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.doojie.domain.po.Recommend" >
+    update doojie_recommend
+    set user_id = #{userId,jdbcType=INTEGER},
+      bussiness_id = #{bussinessId,jdbcType=INTEGER}, 
+     reasons = #{reasons,jdbcType=VARCHAR},
+     recommend_index = #{recommendIndex,jdbcType=INTEGER},
+     status = #{status,jdbcType=INTEGER},
+     is_top = #{isTop,jdbcType=INTEGER},
+      modify_time = #{modifyTime,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 根据用户id查询自己推荐的商家及推荐理由和指数、时间 -->
+  <select id="selectRecommendByUserIdPageList" resultType="map" >
+      SELECT 
+		  b.`id` bussinessId,
+		  b.`name` bname,
+		  r.`recommend_index` recommendIndex,
+		  r.`reasons` reasons,
+		  r.`create_time` createTime 
+		FROM
+		  `doojie_recommend` r 
+		  LEFT JOIN doojie_bussiness b 
+		    ON r.`bussiness_id` = b.`id` 
+		WHERE r.`user_id` = #{userId,jdbcType=INTEGER} 
+		ORDER BY r.`create_time` DESC
+  </select>
+  
+  <!-- 根据商家id查询被推荐的用户及理由和推荐指数 、时间-->
+  <select id="selectRecommendByBussinessIdPageList" resultType="map">
+      SELECT 
+		  u.`id` userId,
+		  u.mobile mobile,
+		  r.`recommend_index` recommendIndex,
+		  r.`reasons` reasons,
+		  r.`create_time` createTime 
+		FROM
+		  `doojie_recommend` r 
+		  LEFT JOIN doojie_user u 
+		    ON r.`user_id` = u.id
+		WHERE r.`bussiness_id` = #{bussinessId,jdbcType=INTEGER}
+		ORDER BY r.`recommend_index` DESC,r.`create_time` DESC 
+  </select>
+  
+  <!-- 查看所有推荐数据,推荐用户，推荐商户，推荐理由，推荐指数，推荐时间，是否置顶  用于管理员查看 -->
+  <select id="selectRecommendAllPageList" resultType="map">
+      SELECT 
+		  u.mobile mobile,
+		  b.`name` bname,
+		  r.id recommendId,
+		  r.`recommend_index` recommendIndex,
+		  r.`reasons` reasons,
+		  r.`create_time` createTime,
+		  r.`modify_time` modifyTime,
+		  r.`is_top` isTop 
+		FROM
+		  `doojie_recommend` r 
+		  LEFT JOIN doojie_user u 
+		    ON r.`user_id` = u.id 
+		  LEFT JOIN doojie_bussiness b 
+		    ON r.`bussiness_id` = b.`id` 
+		<where>
+	        <if test="isTop != null">  
+	           r.`is_top` = #{isTop,jdbcType=INTEGER} 
+	        </if>
+	        <if test="name != null">  
+	          and b.`name` LIKE CONCAT('%', CONCAT(#{name}, '%'))
+	        </if> 
+	    </where>
+		ORDER BY r.`create_time` DESC
+  </select>
+  <!-- 根据用户id和商家id查询是否已经被推荐过 -->
+  <select id="isHasRecommended" resultType="java.lang.Integer">
+      select count(r.id) 
+      from doojie_recommend r 
+      where r.user_id = #{userId} 
+      and r.bussiness_id = #{bussinessId}
+  </select>
+  
+  <!-- 根据用户id和订单id查询评价信息 -->
+  <select id="selectRecommendByUserIdAndOrderId" resultMap="BaseResultMap" >
+      SELECT 
+		  <include refid="Base_Column_List" />
+		FROM
+		  `doojie_recommend` 
+		WHERE `user_id` = #{userId,jdbcType=INTEGER} and order_id = #{orderId,jdbcType=LONGVARCHAR}
+		ORDER BY `create_time` DESC
+  </select>
+</mapper>

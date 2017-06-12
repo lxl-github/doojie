@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd " default-lazy-init="false">
+	<description>springMVC公共配置</description>
+
+	<!-- 自动加载 contorller 要扫描的包 -->
+	<context:component-scan base-package="com.doojie" use-default-filters="false">
+		<context:include-filter type="annotation" 
+			expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	
+	<!-- 配置Jackson编码(默认是ISO8859-1)为UTF-8，用来解决中文乱码问题 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="com.doojie.common.util.StringHttpMessageConverterUtil" />
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	
+ 	<!-- 将无法mapping到Controller的path交给default servlet handler处理 -->
+ 	<mvc:default-servlet-handler/>
+ 	<!-- 静态文件配置 -->
+ 	<mvc:resources mapping="/static/**" location="/static/" />
+ 	<!-- 对模型视图名称的解析，即在视图名称添加前后缀 -->
+ 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"  >
+ 	 	<property name="prefix" value="/WEB-INF/views/"/>
+ 	 	<property name="suffix" value=".jsp"/>   
+ 	</bean>
+ 	
+ 	<!-- 文件上传 -->
+	<bean id="multipartResolver"
+	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <property name="maxUploadSize" value="10240000" />
+	    <property name="resolveLazily" value="true" />
+	    <property name="maxInMemorySize" value="4096" />
+	    <property name="defaultEncoding" value="utf-8"></property>
+	</bean>
+ 	
+ 	
+	<!-- 使用hessian时使用以下方式 -->
+	<!-- org.springframework.remoting.caucho.HessianServiceExporter -->
+	<!-- com.sfbest.remoting.caucho.HessianProxyImpl -->
+<!-- 	<bean id="stockService" class="com.sfbest.stockservice.proxy.ProductStockServiceProxy"></bean> -->
+<!-- 	<bean name="/api/stockInfo" class="org.springframework.remoting.caucho.HessianServiceExporter"> -->
+<!-- 		<property name="serviceInterface" value="com.sfbest.stockservice.api.service.ProductStockAPIService"></property> -->
+<!-- 		<property name="service" ref="stockService"></property> -->
+<!-- 	</bean> -->
+	
+
+<!-- 	<bean id="stockInfoConsumer" -->
+<!-- 		class="org.springframework.remoting.caucho.HessianProxyFactoryBean"> -->
+<!-- 		<property name="serviceUrl" -->
+<!-- 			value="http://localhost:8080/stockservice-web/api/stockInfo" /> -->
+<!-- 		<property name="serviceInterface" -->
+<!-- 			value="com.sfbest.stockservice.api.service.ProductStockAPIService" /> -->
+<!-- 	</bean> -->
+	
+</beans>

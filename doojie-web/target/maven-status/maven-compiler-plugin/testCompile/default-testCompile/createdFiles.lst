@@ -1,0 +1,3 @@
+com\doojie\service\OrderServiceTest.class
+com\doojie\common\cache\RedisCacheServiceUtilTest.class
+com\doojie\service\QuartzTest.class

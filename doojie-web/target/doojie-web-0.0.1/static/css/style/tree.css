@@ -1,0 +1,84 @@
+.indent1 {
+	MARGIN-TOP: 5px; PADDING-LEFT: 0px;MARGIN-BOTTOM: 5px;
+}
+.indent2 {
+	MARGIN-TOP: 5px; PADDING-LEFT: 13px;MARGIN-BOTTOM: 5px;
+}
+.indent3 {
+	MARGIN-TOP: 5px; PADDING-LEFT: 26px;MARGIN-BOTTOM: 5px;
+}
+.indent4 {
+	MARGIN-TOP: 5px; PADDING-LEFT: 39px;MARGIN-BOTTOM: 5px;
+}
+.indent5 {
+	MARGIN-TOP: 5px; PADDING-LEFT: 52px;MARGIN-BOTTOM: 5px;
+}
+.indent6 {
+	MARGIN-TOP: 5px; PADDING-LEFT: 65px;MARGIN-BOTTOM: 5px;
+}
+.indent7 {
+	MARGIN-TOP: 5px; PADDING-LEFT: 78px;MARGIN-BOTTOM: 5px;
+}
+.indent8 {
+	MARGIN-TOP: 5px; PADDING-LEFT: 91px;MARGIN-BOTTOM: 5px;
+}
+.indent9 {
+	MARGIN-TOP: 5px; PADDING-LEFT: 104px;MARGIN-BOTTOM: 5px;
+}
+.indent10 {
+	MARGIN-TOP: 5px; PADDING-LEFT: 117px;MARGIN-BOTTOM: 5px;
+}
+.indent11 {
+	MARGIN-TOP: 5px; PADDING-LEFT: 130px;MARGIN-BOTTOM: 5px;
+}
+.indent12 {
+	MARGIN-TOP: 5px; PADDING-LEFT: 143px;MARGIN-BOTTOM: 5px;
+}
+.indent1kids {
+	MARGIN-TOP: 5px; PADDING-LEFT: 0px;MARGIN-BOTTOM: 5px;
+}
+.indent2kids {
+	MARGIN-TOP: 5px; PADDING-LEFT: 13px;MARGIN-BOTTOM: 5px;
+}
+.indent3kids {
+	MARGIN-TOP: 5px; PADDING-LEFT: 26px;MARGIN-BOTTOM: 5px;
+}
+.indent4kids {
+	MARGIN-TOP: 5px; PADDING-LEFT: 39px;MARGIN-BOTTOM: 5px;
+}
+.indent5kids {
+	MARGIN-TOP: 5px; PADDING-LEFT: 52px;MARGIN-BOTTOM: 5px;
+}
+.indent6kids {
+	MARGIN-TOP: 5px; PADDING-LEFT: 65px;MARGIN-BOTTOM: 5px;
+}
+.indent7kids {
+	MARGIN-TOP: 5px; PADDING-LEFT: 78px;MARGIN-BOTTOM: 5px;
+}
+.indent8kids {
+	MARGIN-TOP: 5px; PADDING-LEFT: 91px;MARGIN-BOTTOM: 5px;
+}
+.indent9kids {
+	MARGIN-TOP: 5px; PADDING-LEFT: 104px;MARGIN-BOTTOM: 5px;
+}
+.indent10kids {
+	MARGIN-TOP: 5px; PADDING-LEFT: 117px;MARGIN-BOTTOM: 5px;
+}
+.indent11kids {
+	MARGIN-TOP: 5px; PADDING-LEFT: 130px;MARGIN-BOTTOM: 5px;
+}
+.indent12kids {
+	MARGIN-TOP: 5px; PADDING-LEFT: 143px;MARGIN-BOTTOM: 5px;
+}
+
+.indentLink{
+	line-height:20px;*line-height:30px;
+}
+
+.indentLink a:link,.indentLink a:visited {
+	color:#025d97;font-family:΢���ź�, Arial;font-size:14px;padding:3px 0;font-weight: bold; 
+}
+
+.indentLink a:hover{
+	color:#F60;
+}

@@ -1,0 +1,6 @@
+com\doojie\shiro\realm\DoojieUsernamePasswordToken.class
+com\doojie\shiro\dto\EmployeeDTO.class
+com\doojie\shiro\dto\BussinessDTO.class
+com\doojie\shiro\realm\ShiroDbRealm.class
+com\doojie\shiro\util\SessionUtil.class
+com\doojie\shiro\dto\ShiroUser.class

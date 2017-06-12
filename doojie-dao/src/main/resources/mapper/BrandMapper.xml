@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.doojie.dao.BrandMapper" >
+  <resultMap id="BaseResultMap" type="com.doojie.domain.po.Brand" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+    <result column="brand_logo" property="brandLogo" jdbcType="VARCHAR" />
+    <result column="brand_search" property="brandSearch" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="modify_time" property="modifyTime" jdbcType="INTEGER" />
+    <result column="logo_path" property="logoPath" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, brand_name, brand_logo, brand_search, create_time, modify_time,logo_path
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from doojie_brand
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from doojie_brand
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.doojie.domain.po.Brand" useGeneratedKeys="true" keyProperty="id">
+    insert into doojie_brand (id, brand_name, brand_logo, 
+      brand_search, create_time, modify_time,logo_path
+      )
+    values (#{id,jdbcType=INTEGER}, #{brandName,jdbcType=VARCHAR}, #{brandLogo,jdbcType=VARCHAR}, 
+      #{brandSearch,jdbcType=CHAR}, #{createTime,jdbcType=INTEGER}, #{modifyTime,jdbcType=INTEGER}, #{logoPath,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.doojie.domain.po.Brand" useGeneratedKeys="true" keyProperty="id">
+    insert into doojie_brand
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="brandName != null" >
+        brand_name,
+      </if>
+      <if test="brandLogo != null" >
+        brand_logo,
+      </if>
+      <if test="brandSearch != null" >
+        brand_search,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="logoPath != null" >
+        logo_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="brandName != null" >
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandLogo != null" >
+        #{brandLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="brandSearch != null" >
+        #{brandSearch,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=INTEGER},
+      </if>
+      <if test="logoPath != null" >
+        #{logoPath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doojie.domain.po.Brand" >
+    update doojie_brand
+    <set >
+      <if test="brandName != null" >
+        brand_name = #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandLogo != null" >
+        brand_logo = #{brandLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="brandSearch != null" >
+        brand_search = #{brandSearch,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=INTEGER},
+      </if>
+      <if test="logoPath != null" >
+        logo_path = #{logoPath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doojie.domain.po.Brand" >
+    update doojie_brand
+    set brand_name = #{brandName,jdbcType=VARCHAR},
+      brand_logo = #{brandLogo,jdbcType=VARCHAR},
+      brand_search = #{brandSearch,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      modify_time = #{modifyTime,jdbcType=INTEGER},
+      logo_path = #{logoPath,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectBrandByBrandName" parameterType="java.lang.String" resultMap="BaseResultMap" >
+  	select <include refid="Base_Column_List"></include> 
+  	from doojie_brand 
+  	where brand_name = #{brandName,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectBrandList" resultMap="BaseResultMap" >
+  	select <include refid="Base_Column_List"></include> 
+  	from doojie_brand
+  </select>
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/doojie.iml" filepath="$PROJECT_DIR$/doojie.iml" />
+      <module fileurl="file://$PROJECT_DIR$/doojie-api/doojie-api.iml" filepath="$PROJECT_DIR$/doojie-api/doojie-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/doojie-common/doojie-common.iml" filepath="$PROJECT_DIR$/doojie-common/doojie-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/doojie-dao/doojie-dao.iml" filepath="$PROJECT_DIR$/doojie-dao/doojie-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/doojie-domain/doojie-domain.iml" filepath="$PROJECT_DIR$/doojie-domain/doojie-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/doojie-quartz/doojie-quartz.iml" filepath="$PROJECT_DIR$/doojie-quartz/doojie-quartz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/doojie-service/doojie-service.iml" filepath="$PROJECT_DIR$/doojie-service/doojie-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/doojie-shiro/doojie-shiro.iml" filepath="$PROJECT_DIR$/doojie-shiro/doojie-shiro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/doojie-web/doojie-web.iml" filepath="$PROJECT_DIR$/doojie-web/doojie-web.iml" />
+    </modules>
+  </component>
+</project>
